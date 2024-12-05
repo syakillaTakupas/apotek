@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        body {
+            background-image: url('/img/p.jpg'); /* Ganti URL gambar sesuai kebutuhan */
+            background-size: 150% 100%;
+            background-position: 0% 0%;
+            animation: moveBackground 30s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            margin: 0;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.85);
+            color: #333;
+            max-width: 380px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .register-header {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-control {
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #ff758c, #ff6a75);
+            transform: scale(1.05);
+        }
+
+        .register-footer a {
+            color: #ff758c;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .register-footer a:hover {
+            color: #ff6a75;
+        }
+
+        .alert {
+            border-radius: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">Create an Account</div>
+        <!-- Display success message -->
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success">
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Register Form -->
+        <form action="/register" method="post">
+            <?= csrf_field() ?>
+            <div class="mb-3">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="register-footer mt-3">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
